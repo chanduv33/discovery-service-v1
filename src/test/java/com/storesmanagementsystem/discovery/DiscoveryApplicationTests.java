@@ -1,4 +1,4 @@
-package com.capgemini.discovery;
+package com.storesmanagementsystem.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
