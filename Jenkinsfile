@@ -19,17 +19,17 @@ pipeline {
             steps{
             withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 
-                sh "docker build . -t discovery:${env.BUILD_NUMBER}"
+                sh "docker build . -t discovery-service-v1:${env.BUILD_NUMBER}"
                 sh "docker login -u $USERNAME -p $PASSWORD"
-                sh "docker tag discovery:${env.BUILD_NUMBER} chanduv33/discovery-service:${env.BUILD_NUMBER}"
-                sh "docker push chanduv33/discovery-service:${env.BUILD_NUMBER}"
+                sh "docker tag discovery-service-v1:${env.BUILD_NUMBER} chanduv33/discovery-service-v1:${env.BUILD_NUMBER}"
+                sh "docker push chanduv33/discovery-service-v1:${env.BUILD_NUMBER}"
             }
             }
         }
         stage ('Delpoy') {
             steps {
               script {
-		               sh "../jenkins/deploy.sh \"${env.BUILD_NUMBER}\" /home/chandrasekharvemugadda/jenkins/discovery"
+		               sh "../jenkins/deploy.sh \"${env.BUILD_NUMBER}\" /home/vboxuser/Microservices-V1/discovery-service"
 	            }   
             }           
         }
